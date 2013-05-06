@@ -4,6 +4,9 @@ var win = window,
 	doc = window.document,
 	_ = win._;
 
+//cache native slice
+var nativeSlice = Array.prototype.slice;
+
 //regular expression
 var rxConciseSelector = /^(?:#([\w\-]+)|(\w+)|\.([\w\-]+))$/,//filter #id, tagName, .className
 	rxIdSelector = /^#([\w\-]+)$/,
@@ -12,6 +15,11 @@ var rxConciseSelector = /^(?:#([\w\-]+)|(\w+)|\.([\w\-]+))$/,//filter #id, tagNa
 	rxNameSelector = /^\[name=["']?([\w\-]+)["']?\]$/,
 	rxReady = /complete|loaded|interactive/;
 
+/**
+ * get elements which were found with css selector
+ * @param {String} selector
+ * @param {HTMLElement} context
+ */
 _.qsa = function(selector, context) {
 	var result, m;
 	if(!context || !context.querySelector) {
@@ -31,15 +39,26 @@ _.qsa = function(selector, context) {
 	return nativeSlice.call(result);
 };
 
+/**
+ * get first element whick found with css selector
+ * @param {String} selector
+ * @param {HTMLElement} context
+ */
 _.qs = function(selector, context) {
+	var result;
 	if(!context || !context.querySelector) {
 		context = document;
 	}
-	return nativeSlice.call(context.querySelector(selector));
+	result = [context.querySelector(selector)];
+	return nativeSlice.call(result);
 };
 
+/**
+ * set "DOMContentLoaded" event handler
+ * @param {Function} callback
+ */
 _.ready = function(callback) {
-	var args = arraySlice.call(arguments, 1);
+	var args = nativeSlice.call(arguments, 1);
 	if (rxReady.test(doc.readyState)) {
 		if(!args) {
 			callback.call(doc);
@@ -47,28 +66,51 @@ _.ready = function(callback) {
 			callback.apply(doc, args);
 		}
 	} else {
-		doc.addEventListener("DOMContentLoaded", function() {
+		var domContentLoadedCallback = function() {
 			if(!args) {
 				callback.call(doc);
 			} else {
 				callback.apply(doc, args);
 			}
-		}, false);
+			doc.removeEventListener("DOMContentLoaded", domContentLoadedCallback);
+		};
+		doc.addEventListener("DOMContentLoaded", domContentLoadedCallback, false);
 	}
 };
 
+/**
+ * add event handler to elements
+ * @param {Array|NodeList} targetElements
+ * @param {String} type
+ * @param {Function} callback
+ * @param {Boolean} useCapture
+ */
 _.bind = function(targetElements, type, callback, useCapture) {
 	_.forEach(targetElements, function(element) {
 		element.addEventListener(type, callback, useCapture);
 	});
 };
 
+/**
+ * remove event handler from elements
+ * @param {Array|NodeList} targetElements
+ * @param {String} type
+ * @param {Function} callback
+ * @param {Boolean} useCapture
+ */
 _.unbind = function(targetElements, type, callback, useCapture) {
 	_.forEach(targetElements, function(element) {
 		element.removeEventListener(type, callback, useCapture);
 	});
 };
 
+/**
+ * add event handler which will be called once to elements
+ * @param {Array|NodeList} targetElements
+ * @param {String} type
+ * @param {Function} callback
+ * @param {Boolean} useCapture
+ */
 _.once = function(targetElements, type, callback, useCapture) {
 	_.forEach(targetElements, function(element) {
 		var wrapOnce = function(e) {
@@ -124,7 +166,7 @@ _.undelegate = function(targetElements, type, selector, callback) {
 					element.closureList[type].splice(index, 1);
 				}
 			} else if(type && !selector && !callback) {
-				_.each(element.closureList[type], function(item) {
+				_.forEach(element.closureList[type], function(item) {
 					element.removeEventListener(type, item.closure);
 				});
 				delete element.closureList[type];
