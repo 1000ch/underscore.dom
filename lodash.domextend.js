@@ -121,6 +121,13 @@ _.once = function(targetElements, type, callback, useCapture) {
 	});
 };
 
+/**
+ * delegate
+ * @param {Array|NodeList}
+ * @param {String} type
+ * @param {String} selector
+ * @param {Function} callback
+ */
 _.delegate = function(targetElements, type, selector, callback) {
 	var closure = null;
 	var storedClosure = null;
@@ -144,6 +151,13 @@ _.delegate = function(targetElements, type, selector, callback) {
 	});
 };
 
+/**
+ * undelegate
+ * @param {Array|NodeList}
+ * @param {String} type
+ * @param {String} selector
+ * @param {Function} callback
+ */
 _.undelegate = function(targetElements, type, selector, callback) {
 	var storedCallback;
 	var storedSelector;
@@ -183,25 +197,46 @@ _.undelegate = function(targetElements, type, selector, callback) {
 	});
 };
 
+/**
+ * add css class to elements
+ * @param {Array|NodeList} targetElements
+ * @param {String} className
+ */
 _.addClass = function(targetElements, className) {
 	_.forEach(targetElements, function(element) {
 		addClass(element, className);
 	});
 };
 
+/**
+ * remove css class from elements
+ * @param {Array|NodeList} targetElements
+ * @param {String} className
+ */
 _.removeClass = function(targetElements, className) {
 	_.forEach(targetElements, function(element) {
 		removeClass(element, className);
 	});
 };
 
+/**
+ * toggle css class of elemenets
+ * @param {Array|NodeList} targetElements
+ * @param {String} className
+ */
 _.toggleClass = function(targetElements, className) {
 	_.forEach(targetElements, function(element) {
 		toggleClass(element, className);
 	});
 };
 
-
+/**
+ * create closure for event delegation
+ * @param {HTMLElement} target
+ * @param {String} selector
+ * @param {Function} eventHandler
+ * @return {Function}
+ */
 function generateClosure(target, selector, eventHandler) {
 	return function(e) {
 		var callback = eventHandler;
