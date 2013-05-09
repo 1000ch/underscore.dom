@@ -8,7 +8,7 @@
 
 ## Selector API
 
-### `_.qsa(selector, context)`
+### _.qsa(selector, context)
 
 指定のCSSセレクタに該当する要素をすべて取得します。  
 
@@ -16,7 +16,7 @@
     //if context is empty, element will be searched with document as context
     var elements = _qsa("tagName .className", document);
 
-### `_.qs(selector, context)`
+### _.qs(selector, context)
 
 指定のCSSセレクタに該当する要素のうち、先頭の要素を取得します。  
 
@@ -26,7 +26,7 @@
 
 ## Event API
 
-### `_.ready(callback)`
+### _.ready(callback)
 
 DOMツリーが構築された時に発火するイベントを指定します。  
 
@@ -34,7 +34,7 @@ DOMツリーが構築された時に発火するイベントを指定します�
         console.log("DOMContentLoaded");
     });
 
-### `_.bind(targetElements, type, callback, useCapture)`
+### _.bind(targetElements, type, callback, useCapture)
 
 指定の要素にイベントをバインドします。  
 
@@ -46,7 +46,7 @@ DOMツリーが構築された時に発火するイベントを指定します�
     
     _.bind(targetElements, "click", clickCallback, false);
 
-### `_.unbind(targetElements, type, callback, useCapture)`
+### _.unbind(targetElements, type, callback, useCapture)
 
 指定の要素からイベントをアンバインドします。  
 
@@ -58,7 +58,7 @@ DOMツリーが構築された時に発火するイベントを指定します�
     
     _.unbind(targetElements, "click", clickCallback, false);
 
-### `_.once(targetElements, type, callback, useCapture)`
+### _.once(targetElements, type, callback, useCapture)
 
 指定の要素にイベントをバインドします。  
 イベントは一度だけ発火されます。  
@@ -71,7 +71,7 @@ DOMツリーが構築された時に発火するイベントを指定します�
     
     _.once(targetElements, "click", clickCallback, false);
 
-### `_.delegate(targetElements, type, selector, callback)`
+### _.delegate(targetElements, type, selector, callback)
 
 指定の要素にイベントを移譲し、指定のCSSセレクタに該当する子要素が  
 ある場合イベントを発火します。  
@@ -82,9 +82,9 @@ DOMツリーが構築された時に発火するイベントを指定します�
     
     var targetElements = _.qsa(".targetClass");
     
-    _.undelegate(_.qsa("div"), "click", "button", clickCallback);
+    _.delegate(targetElements, "click", "button", clickCallback);
 
-### `_.undelegate(targetElements, type, selector, callback)`
+### _.undelegate(targetElements, type, selector, callback)
 
 指定の要素にイベントを移譲されている場合、それを除きます。
 
@@ -92,17 +92,35 @@ DOMツリーが構築された時に発火するイベントを指定します�
         console.log("span is clicked.");
     };
     
-    var targetElements = _.qsa(".targetClass");
+    var targetElements = _.qsa("targetTag");
     
-    _.undelegate(_.qsa("div"), "click", "button", clickCallback);
+    _.undelegate(targetElements, "click", "button", clickCallback);
 
 ## Manipulation API
 
-### `_.addClass(targetElements, className)`
+### _.addClass(targetElements, className)
 
-### `_.removeClass(targetElements, className)`
+指定の要素にクラスを追加します。  
 
-### `_.toggleClass(targetElements, className)`
+    var targetElemenets = _.qsa(".targetClass");
+
+    _.addClass(targetElemenets, "addClassName");
+
+### _.removeClass(targetElements, className)
+
+指定の要素からクラスを削除します。  
+
+    var targetElemenets = _.qsa(".targetClass");
+    
+    _.removeClass(targetElemenets, "removeClassName");
+
+### _.toggleClass(targetElements, className)
+
+指定の要素のクラスをトグルします。  
+
+    var targetElemenets = _.qsa(".targetClass");
+    
+    _.toggleClass(targetElemenets, "toggleClassName");
 
 ##License
 
