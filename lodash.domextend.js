@@ -1,14 +1,13 @@
 (function(window, undefined){
 "use strict";
-var win = window,
-	doc = window.document,
-	_ = win._;
+var win = window, doc = window.document;
+var _ = win._;
 
 //cache native slice
 var nativeSlice = Array.prototype.slice;
 
 //regular expression
-var rxConciseSelector = /^(?:#([\w\-]+)|(\w+)|\.([\w\-]+))$/,//filter #id, tagName, .className
+var 
 	rxIdSelector = /^#([\w\-]+)$/,
 	rxClassSelector = /^\.([\w\-]+)$/,
 	rxTagSelector = /^[\w\-]+$/,
@@ -25,13 +24,13 @@ _.qsa = function(selector, context) {
 	if(!context || !context.querySelector) {
 		context = document;
 	}
-	if(m = rxIdSelector.exec(selector)) {
+	if((m = rxIdSelector.exec(selector))) {
 		result = [document.getElementById(m[1])];
-	} else if(m = rxClassSelector.exec(selector)) {
+	} else if((m = rxClassSelector.exec(selector))) {
 		result = context.getElementsByClassName(m[1]);
-	} else if(m = rxTagSelector.exec(selector)) {
+	} else if((m = rxTagSelector.exec(selector))) {
 		result = context.getElementsByTagName(m[1]);
-	} else if(m = rxNameSelector.exec(selector)) {
+	} else if((m = rxNameSelector.exec(selector))) {
 		result = context.getElementsByName(m[1]);
 	} else {
 		result = context.querySelectorAll(selector);
@@ -321,5 +320,7 @@ function toggleClass(targetNode, value) {
 		targetNode.className = newClass;
 	}
 }
+
+win._ = _;
 
 })(window);
