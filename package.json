@@ -1,0 +1,23 @@
+{
+  "name": "lodash.domextend",
+  "version": "0.1.0",
+  "description": "extend for utility belt.",
+  "main": "lodash.domextend.js",
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-uglify": "~0.1.2",
+    "grunt-contrib-watch": "~0.3.1",
+    "grunt-contrib-jshint": "~0.2.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/1000ch/lodash.extend.git"
+  },
+  "author": "1000ch",
+  "license": "MIT",
+  "readmeFilename": "README.md"
+}
