@@ -1,17 +1,17 @@
 module.exports = function(grunt) {
 	grunt.initConfig({
 		jshint: {
-			all: ["./lodash.domextend.js"]
+			all: ["./_.domextend.js"]
 		},
 		uglify: {
 			js: {
 				files: {
-					"./lodash.domextend.min.js": ["./lodash.domextend.js"]
+					"./_.domextend.min.js": ["./_.domextend.js"]
 				}
 			}
 		},
 		watch: {
-			files: ["./lodash.domextend.js"],
+			files: ["./_.domextend.js"],
 			tasks: ["jshint", "uglify"]
 		}
 	});
