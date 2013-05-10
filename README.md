@@ -1,4 +1,4 @@
-# lodash.domextend
+# _.domextend
 
 ## About
 
