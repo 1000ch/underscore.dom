@@ -12,7 +12,9 @@ var
 	rxClassSelector = /^\.([\w\-]+)$/,
 	rxTagSelector = /^[\w\-]+$/,
 	rxNameSelector = /^\[name=["']?([\w\-]+)["']?\]$/,
-	rxReady = /^[complete|loaded|interactive]$/;
+	rxReady = /^(complete|loaded|interactive)$/;
+
+var arrayReady = ["complete", "loaded", "interactive"];
 
 /**
  * get elements which were found with css selector
@@ -56,7 +58,7 @@ _.qs = function(selector, context) {
  */
 _.ready = function(callback) {
 	var args = nativeSlice.call(arguments, 1);
-	if ("complete" === doc.readyState) {
+	if (arrayReady.indexOf(doc.readyState) != -1) {
 		if(!args) {
 			callback.call(doc);
 		} else {
