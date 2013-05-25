@@ -12,7 +12,7 @@ var
 	rxClassSelector = /^\.([\w\-]+)$/,
 	rxTagSelector = /^[\w\-]+$/,
 	rxNameSelector = /^\[name=["']?([\w\-]+)["']?\]$/,
-	rxReady = /complete|loaded|interactive/;
+	rxReady = /^[complete|loaded|interactive]$/;
 
 /**
  * get elements which were found with css selector
@@ -44,12 +44,10 @@ _.qsa = function(selector, context) {
  * @param {HTMLElement} context
  */
 _.qs = function(selector, context) {
-	var result;
 	if(!context || !context.querySelector) {
 		context = document;
 	}
-	result = [context.querySelector(selector)];
-	return nativeSlice.call(result);
+	return context.querySelector(selector);
 };
 
 /**
@@ -58,7 +56,7 @@ _.qs = function(selector, context) {
  */
 _.ready = function(callback) {
 	var args = nativeSlice.call(arguments, 1);
-	if (rxReady.test(doc.readyState)) {
+	if ("complete" === doc.readyState) {
 		if(!args) {
 			callback.call(doc);
 		} else {
