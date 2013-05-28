@@ -12,7 +12,9 @@ var
 	rxClassSelector = /^\.([\w\-]+)$/,
 	rxTagSelector = /^[\w\-]+$/,
 	rxNameSelector = /^\[name=["']?([\w\-]+)["']?\]$/,
-	rxReady = /complete|loaded|interactive/;
+	rxReady = /^(complete|loaded|interactive)$/;
+
+var arrayReady = ["complete", "loaded", "interactive"];
 
 var arrayReady = ["complete", "loaded", "interactive"];
 
@@ -46,7 +48,6 @@ _.qsa = function(selector, context) {
  * @param {HTMLElement} context
  */
 _.qs = function(selector, context) {
-	var result;
 	if(!context || !context.querySelector) {
 		context = document;
 	}
