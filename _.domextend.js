@@ -16,8 +16,6 @@ var
 
 var arrayReady = ["complete", "loaded", "interactive"];
 
-var arrayReady = ["complete", "loaded", "interactive"];
-
 /**
  * get elements which were found with css selector
  * @param {String} selector
