@@ -14,6 +14,8 @@ var
 	rxNameSelector = /^\[name=["']?([\w\-]+)["']?\]$/,
 	rxReady = /complete|loaded|interactive/;
 
+var arrayReady = ["complete", "loaded", "interactive"];
+
 /**
  * get elements which were found with css selector
  * @param {String} selector
@@ -48,8 +50,7 @@ _.qs = function(selector, context) {
 	if(!context || !context.querySelector) {
 		context = document;
 	}
-	result = [context.querySelector(selector)];
-	return nativeSlice.call(result);
+	return context.querySelector(selector);
 };
 
 /**
@@ -58,7 +59,7 @@ _.qs = function(selector, context) {
  */
 _.ready = function(callback) {
 	var args = nativeSlice.call(arguments, 1);
-	if (rxReady.test(doc.readyState)) {
+	if (arrayReady.indexOf(doc.readyState) != -1) {
 		if(!args) {
 			callback.call(doc);
 		} else {
