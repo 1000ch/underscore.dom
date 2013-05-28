@@ -48,8 +48,7 @@ _.qs = function(selector, context) {
 	if(!context || !context.querySelector) {
 		context = document;
 	}
-	result = [context.querySelector(selector)];
-	return nativeSlice.call(result);
+	return context.querySelector(selector);
 };
 
 /**
