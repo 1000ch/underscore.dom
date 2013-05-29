@@ -14,7 +14,7 @@
 
     //context is optional parameter.
     //if context is empty, element will be searched with document as context
-    var elements = _qsa("tagName .className", document);
+    var elements = _.qsa("tagName .className", document);
 
 ### _.qs(selector, context)
 
@@ -22,7 +22,7 @@
 
     //context is optional parameter.
     //if context is empty, element will be searched with document as context
-    var element = _qs("tagName .className", document);
+    var element = _.qs("tagName .className", document);
 
 ## Event API
 
@@ -125,4 +125,4 @@ DOMツリーが構築された時に発火するイベントを指定します�
 ##License
 
 Copyright [1000ch.net](http://1000ch.net/)  
-Released under the MIT license  
+Released under the MIT license.  
