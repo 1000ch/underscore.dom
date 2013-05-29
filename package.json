@@ -1,5 +1,5 @@
 {
-  "name": "lodash.domextend",
+  "name": "_.domextend",
   "version": "0.1.0",
   "description": "extend for utility belt.",
   "main": "lodash.domextend.js",
