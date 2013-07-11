@@ -1,7 +1,7 @@
-(function(window, undefined){
+(function(window, document, undefined){
 "use strict";
-var win = window, doc = window.document;
-var _ = win._;
+var win = window, doc = document;
+var _local = win._;
 
 //cache native slice
 var nativeSlice = Array.prototype.slice;
@@ -19,14 +19,20 @@ var arrayReady = ["complete", "loaded", "interactive"];
  * get elements which were found with css selector
  * @param {String} selector
  * @param {HTMLElement} context
+ * @return {Array}
  */
-_.qsa = function(selector, context) {
+_local.qsa = function(selector, context) {
 	var result, m;
 	if(!context || !context.querySelector) {
 		context = document;
 	}
 	if((m = rxIdSelector.exec(selector))) {
-		result = [document.getElementById(m[1])];
+		var buffer = document.getElementById(m[1]);
+		if(buffer) {
+			result = [buffer];
+		} else {
+			result = [];
+		}
 	} else if((m = rxClassSelector.exec(selector))) {
 		result = context.getElementsByClassName(m[1]);
 	} else if((m = rxTagSelector.exec(selector))) {
@@ -41,10 +47,11 @@ _.qsa = function(selector, context) {
 
 /**
  * get first element whick found with css selector
+ * @description return value is nullable.
  * @param {String} selector
  * @param {HTMLElement} context
  */
-_.qs = function(selector, context) {
+_local.qs = function(selector, context) {
 	if(!context || !context.querySelector) {
 		context = document;
 	}
@@ -60,9 +67,9 @@ _.qs = function(selector, context) {
  * set "DOMContentLoaded" event handler
  * @param {Function} callback
  */
-_.ready = function(callback) {
+_local.ready = function(callback) {
 	var args = nativeSlice.call(arguments, 1);
-	if (arrayReady.indexOf(doc.readyState) !== -1) {
+	if (rxReady.test(doc.readyState)) {
 		if(!args) {
 			callback.call(doc);
 		} else {
@@ -88,8 +95,8 @@ _.ready = function(callback) {
  * @param {Function} callback
  * @param {Boolean} useCapture
  */
-_.bind = function(targetElements, type, callback, useCapture) {
-	_.forEach(targetElements, function(element) {
+_local.bind = function(targetElements, type, callback, useCapture) {
+	_local.forEach(targetElements, function(element) {
 		element.addEventListener(type, callback, useCapture);
 	});
 };
@@ -101,8 +108,8 @@ _.bind = function(targetElements, type, callback, useCapture) {
  * @param {Function} callback
  * @param {Boolean} useCapture
  */
-_.unbind = function(targetElements, type, callback, useCapture) {
-	_.forEach(targetElements, function(element) {
+_local.unbind = function(targetElements, type, callback, useCapture) {
+	_local.forEach(targetElements, function(element) {
 		element.removeEventListener(type, callback, useCapture);
 	});
 };
@@ -114,8 +121,8 @@ _.unbind = function(targetElements, type, callback, useCapture) {
  * @param {Function} callback
  * @param {Boolean} useCapture
  */
-_.once = function(targetElements, type, callback, useCapture) {
-	_.forEach(targetElements, function(element) {
+_local.once = function(targetElements, type, callback, useCapture) {
+	_local.forEach(targetElements, function(element) {
 		var wrapOnce = function(e) {
 			callback.call(element, e);
 			element.removeEventListener(type, wrapOnce, useCapture);
@@ -131,19 +138,19 @@ _.once = function(targetElements, type, callback, useCapture) {
  * @param {String} selector
  * @param {Function} callback
  */
-_.delegate = function(targetElements, type, selector, callback) {
+_local.delegate = function(targetElements, type, selector, callback) {
 	var closure = null;
 	var storedClosure = null;
-	_.forEach(targetElements, function(element) {
-		if(_.isUndefined(element.closureList)) {
+	_local.forEach(targetElements, function(element) {
+		if(_local.isUndefined(element.closureList)) {
 			element.closureList = {};
 		}
-		if(!_.has(element.closureList, type)) {
+		if(!_local.has(element.closureList, type)) {
 			element.closureList[type] = [];
 		}
 		closure = generateClosure(element, selector, callback);
-		storedClosure = _.pluck(element.closureList[type], "closure");
-		if(_.indexOf(storedClosure, closure) === -1) {
+		storedClosure = _local.pluck(element.closureList[type], "closure");
+		if(_local.indexOf(storedClosure, closure) === -1) {
 			element.closureList[type].push({
 				selector: selector,
 				callback: callback,
@@ -161,36 +168,36 @@ _.delegate = function(targetElements, type, selector, callback) {
  * @param {String} selector
  * @param {Function} callback
  */
-_.undelegate = function(targetElements, type, selector, callback) {
+_local.undelegate = function(targetElements, type, selector, callback) {
 	var storedCallback;
 	var storedSelector;
 	var storedClosure;
 	var index;
-	_.forEach(targetElements, function(element) {
-		if(!_.isUndefined(element.closureList) && _.has(element.closureList, type)) {
+	_local.forEach(targetElements, function(element) {
+		if(!_local.isUndefined(element.closureList) && _local.has(element.closureList, type)) {
 			if(type && selector && callback) {
-				storedCallback = _.pluck(element.closureList[type], "callback");
-				index = _.indexOf(storedCallback, callback);
+				storedCallback = _local.pluck(element.closureList[type], "callback");
+				index = _local.indexOf(storedCallback, callback);
 				if(index !== -1) {
 					element.removeEventListener(type, element.closureList[type][index].closure);
 					element.closureList[type].splice(index, 1);
 				}
 			} else if(type && selector && !callback) {
-				storedSelector = _.pluck(element.closureList[type], "selector");
-				index = _.indexOf(storedSelector, selector);
+				storedSelector = _local.pluck(element.closureList[type], "selector");
+				index = _local.indexOf(storedSelector, selector);
 				if(index !== -1) {
 					element.removeEventListener(type, element.closureList[type][index].closure);
 					element.closureList[type].splice(index, 1);
 				}
 			} else if(type && !selector && !callback) {
-				_.forEach(element.closureList[type], function(item) {
+				_local.forEach(element.closureList[type], function(item) {
 					element.removeEventListener(type, item.closure);
 				});
 				delete element.closureList[type];
 			} else {
-				var keys = _.keys(element.closureList);
-				_.forEach(keys, function(key) {
-					_.forEach(element.closureList[key], function(item) {
+				var keys = _local.keys(element.closureList);
+				_local.forEach(keys, function(key) {
+					_local.forEach(element.closureList[key], function(item) {
 						element.removeEventListener(key, item.closure);
 					});
 				});
@@ -205,8 +212,8 @@ _.undelegate = function(targetElements, type, selector, callback) {
  * @param {Array|NodeList} targetElements
  * @param {String} className
  */
-_.addClass = function(targetElements, className) {
-	_.forEach(targetElements, function(element) {
+_local.addClass = function(targetElements, className) {
+	_local.forEach(targetElements, function(element) {
 		addClass(element, className);
 	});
 };
@@ -216,8 +223,8 @@ _.addClass = function(targetElements, className) {
  * @param {Array|NodeList} targetElements
  * @param {String} className
  */
-_.removeClass = function(targetElements, className) {
-	_.forEach(targetElements, function(element) {
+_local.removeClass = function(targetElements, className) {
+	_local.forEach(targetElements, function(element) {
 		removeClass(element, className);
 	});
 };
@@ -227,8 +234,8 @@ _.removeClass = function(targetElements, className) {
  * @param {Array|NodeList} targetElements
  * @param {String} className
  */
-_.toggleClass = function(targetElements, className) {
-	_.forEach(targetElements, function(element) {
+_local.toggleClass = function(targetElements, className) {
+	_local.forEach(targetElements, function(element) {
 		toggleClass(element, className);
 	});
 };
@@ -243,8 +250,8 @@ _.toggleClass = function(targetElements, className) {
 function generateClosure(target, selector, eventHandler) {
 	return function(e) {
 		var callback = eventHandler;
-		var children = _.qsa(selector, target);
-		_.forEach(children, function(child) {
+		var children = _local.qsa(selector, target);
+		_local.forEach(children, function(child) {
 			if(e.target === child) {
 				eventHandler.call(child, e);
 			}
@@ -325,6 +332,6 @@ function toggleClass(targetNode, value) {
 	}
 }
 
-win._ = _;
+win._ = _local;
 
-})(window);
+})(window, document);

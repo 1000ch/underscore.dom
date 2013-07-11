@@ -14,7 +14,11 @@
 
     //context is optional parameter.
     //if context is empty, element will be searched with document as context
+<<<<<<< HEAD
     var elements = _qsa("tagName .className", document);
+=======
+    var elements = _.qsa("tagName .className", document);
+>>>>>>> e16de98f7fa9e80c3398cbfd58e4f9371b9904d7
 
 ### _.qs(selector, context)
 
@@ -22,7 +26,11 @@
 
     //context is optional parameter.
     //if context is empty, element will be searched with document as context
+<<<<<<< HEAD
     var element = _qs("tagName .className", document);
+=======
+    var element = _.qs("tagName .className", document);
+>>>>>>> e16de98f7fa9e80c3398cbfd58e4f9371b9904d7
 
 ## Event API
 
@@ -125,4 +133,8 @@ DOMツリーが構築された時に発火するイベントを指定します�
 ##License
 
 Copyright [1000ch.net](http://1000ch.net/)  
+<<<<<<< HEAD
 Released under the MIT license  
+=======
+Released under the MIT license.  
+>>>>>>> e16de98f7fa9e80c3398cbfd58e4f9371b9904d7
