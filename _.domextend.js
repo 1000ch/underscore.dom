@@ -11,8 +11,7 @@ var
 	rxIdSelector = /^#([\w\-]+)$/,
 	rxClassSelector = /^\.([\w\-]+)$/,
 	rxTagSelector = /^[\w\-]+$/,
-	rxNameSelector = /^\[name=["']?([\w\-]+)["']?\]$/,
-	rxReady = /^(complete|loaded|interactive)$/;
+	rxNameSelector = /^\[name=["']?([\w\-]+)["']?\]$/;
 
 var arrayReady = ["complete", "loaded", "interactive"];
 
@@ -49,7 +48,12 @@ _.qs = function(selector, context) {
 	if(!context || !context.querySelector) {
 		context = document;
 	}
-	return context.querySelector(selector);
+	var m;
+	if((m = rxIdSelector.exec(selector))) {
+		return document.getElementById(m[1]);
+	} else {
+		return context.querySelector(selector);
+	}
 };
 
 /**
@@ -58,22 +62,22 @@ _.qs = function(selector, context) {
  */
 _.ready = function(callback) {
 	var args = nativeSlice.call(arguments, 1);
-	if (arrayReady.indexOf(doc.readyState) != -1) {
+	if (arrayReady.indexOf(doc.readyState) !== -1) {
 		if(!args) {
 			callback.call(doc);
 		} else {
 			callback.apply(doc, args);
 		}
 	} else {
-		var domContentLoadedCallback = function() {
+		var DOMContentLoadedCallback = function() {
 			if(!args) {
 				callback.call(doc);
 			} else {
 				callback.apply(doc, args);
 			}
-			doc.removeEventListener("DOMContentLoaded", domContentLoadedCallback);
+			doc.removeEventListener("DOMContentLoaded", DOMContentLoadedCallback);
 		};
-		doc.addEventListener("DOMContentLoaded", domContentLoadedCallback, false);
+		doc.addEventListener("DOMContentLoaded", DOMContentLoadedCallback);
 	}
 };
 
