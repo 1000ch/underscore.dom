@@ -69,7 +69,7 @@ _local.qs = function(selector, context) {
  */
 _local.ready = function(callback) {
 	var args = nativeSlice.call(arguments, 1);
-	if (rxReady.test(doc.readyState)) {
+	if (arrayReady.indexOf(doc.readyState) !== -1) {
 		if(!args) {
 			callback.call(doc);
 		} else {
