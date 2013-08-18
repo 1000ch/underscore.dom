@@ -36,7 +36,7 @@ _local.qsa = function(selector, context) {
 	} else if((m = rxClassSelector.exec(selector))) {
 		result = context.getElementsByClassName(m[1]);
 	} else if((m = rxTagSelector.exec(selector))) {
-		result = context.getElementsByTagName(m[1]);
+		result = context.getElementsByTagName(m[0]);
 	} else if((m = rxNameSelector.exec(selector))) {
 		result = context.getElementsByName(m[1]);
 	} else {
