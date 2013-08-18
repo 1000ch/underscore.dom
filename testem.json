@@ -14,7 +14,7 @@
   "serve_files": [
     "./lib/lodash/lodash.js",
     "./src/_.domextend.js",
-    "./test/*.js"
+    "./spec/*.js"
   ],
   "launch_in_dev": ["PhantomJS"]
 }
