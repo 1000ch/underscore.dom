@@ -213,9 +213,16 @@ _local.undelegate = function(targetElements, type, selector, callback) {
  * @param {String} className
  */
 _local.addClass = function(targetElements, className) {
-	_local.forEach(targetElements, function(element) {
-		addClass(element, className);
-	});
+	if(targetElements == null) {
+		return;
+	}
+	if(_local.isElement(targetElements)) {
+		addClass(targetElements, className);
+	} else if(_local.isArray(targetElements)) {
+		_local.forEach(targetElements, function(element) {
+			addClass(element, className);
+		});
+	}
 };
 
 /**
@@ -224,9 +231,16 @@ _local.addClass = function(targetElements, className) {
  * @param {String} className
  */
 _local.removeClass = function(targetElements, className) {
-	_local.forEach(targetElements, function(element) {
-		removeClass(element, className);
-	});
+	if(targetElements == null) {
+		return;
+	}
+	if(_local.isElement(targetElements)) {
+		removeClass(targetElements, className);
+	} else if(_local.isArray(targetElements)) {
+		_local.forEach(targetElements, function(element) {
+			removeClass(element, className);
+		});
+	}
 };
 
 /**
@@ -235,9 +249,16 @@ _local.removeClass = function(targetElements, className) {
  * @param {String} className
  */
 _local.toggleClass = function(targetElements, className) {
-	_local.forEach(targetElements, function(element) {
-		toggleClass(element, className);
-	});
+	if(targetElements == null) {
+		return;
+	}
+	if(_local.isElement(targetElements)) {
+		toggleClass(targetElements, className);
+	} else if(_local.isArray(targetElements)) {
+		_local.forEach(targetElements, function(element) {
+			toggleClass(element, className);
+		});
+	}
 };
 
 /**
@@ -266,7 +287,7 @@ function generateClosure(target, selector, eventHandler) {
  */
 function addClass(targetNode, value) {
 	var classList = (value + "").split(" ");
-	var newClass = "", oldClass = targetNode.className + "";
+	var oldClass = targetNode.className + "";
 	var arrayBuffer = oldClass.split(" ");
 	var valueIndex = -1;
 	for(var i = 0, len = classList.length;i < len;i++) {
@@ -275,7 +296,7 @@ function addClass(targetNode, value) {
 			arrayBuffer.push(classList[i]);
 		}
 	}
-	newClass = arrayBuffer.join(" ");
+	var newClass = arrayBuffer.join(" ");
 	if(newClass != oldClass) {
 		//if className is updated
 		targetNode.className = newClass;
@@ -289,7 +310,7 @@ function addClass(targetNode, value) {
  */
 function removeClass(targetNode, value) {
 	var classList = (value + "").split(" ");
-	var newClass = "", oldClass = targetNode.className + "";
+	var oldClass = targetNode.className + "";
 	var arrayBuffer = oldClass.split(" ");
 	var valueIndex = -1;
 	for(var i = 0, len = classList.length;i < len;i++) {
@@ -298,7 +319,7 @@ function removeClass(targetNode, value) {
 			arrayBuffer.splice(valueIndex, 1);
 		}
 	}
-	newClass = arrayBuffer.join(" ");
+	var newClass = arrayBuffer.join(" ");
 	if(newClass != oldClass) {
 		//if className is updated
 		targetNode.className = newClass;
@@ -312,20 +333,20 @@ function removeClass(targetNode, value) {
  */
 function toggleClass(targetNode, value) {
 	var classList = (value + "").split(" ");
-	var newClass = "", oldClass = targetNode.className + "";
+	var oldClass = targetNode.className + "";
 	var arrayBuffer = oldClass.split(" ");
 	var valueIndex = -1;
 	for(var i = 0, len = classList.length;i < len;i++) {
 		valueIndex = arrayBuffer.indexOf(classList[i]);
 		if(valueIndex === -1) {
 			//if does not exist
-			arrayBuffer.push(value);
+			arrayBuffer.push(classList[i]);
 		} else {
 			//if exist
 			arrayBuffer.splice(valueIndex, 1);
 		}
 	}
-	newClass = arrayBuffer.join(" ");
+	var newClass = arrayBuffer.join(" ");
 	if(newClass != oldClass) {
 		//if className is updated
 		targetNode.className = newClass;
