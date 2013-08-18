@@ -1,4 +1,4 @@
-# _.domextend [![Build Status](https://travis-ci.org/1000ch/_.domextend.png?branch=master)](https://travis-ci.org/1000ch/_.domextend)
+# _.domextend [![Build Status](https://travis-ci.org/1000ch/underscore.domextend.png?branch=master)](https://travis-ci.org/1000ch/underscore.domextend)
 
 ## About
 
