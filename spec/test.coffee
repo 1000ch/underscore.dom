@@ -2,14 +2,14 @@ expect = chai.expect
 
 describe "API Existence", ->
 
-  it "_.ready exists", ->
-    expect(!!_.ready).to.equal true
-
   it "_.qsa exists", ->
     expect(!!_.qsa).to.equal true
 
   it "_.qs exists", ->
     expect(!!_.qs).to.equal true
+
+  it "_.ready exists", ->
+    expect(!!_.ready).to.equal true
 
   it "_.bind exists", ->
     expect(!!_.bind).to.equal true
