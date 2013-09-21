@@ -1,0 +1,6 @@
+[submodule "reqwest"]
+	path = reqwest
+	url = https://github.com/ded/reqwest.git
+[submodule "when"]
+	path = when
+	url = https://github.com/cujojs/when.git
