@@ -4,3 +4,9 @@
 [submodule "when"]
 	path = when
 	url = https://github.com/cujojs/when.git
+[submodule "lodash"]
+	path = lodash
+	url = https://github.com/lodash/lodash.git
+[submodule "underscore"]
+	path = underscore
+	url = https://github.com/jashkenas/underscore.git
