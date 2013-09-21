@@ -9,12 +9,12 @@
   "after_tests": "rm spec/*.js",
   "src_files": [
     "./lib/lodash/lodash.js",
-    "./src/_.domextend.js",
+    "./src/underscore.affix.js",
     "./spec/*.coffee"
   ],
   "serve_files": [
     "./lib/lodash/lodash.js",
-    "./src/_.domextend.js",
+    "./src/underscore.affix.js",
     "./spec/*.js"
   ],
   "launch_in_dev": ["PhantomJS"]
