@@ -1,7 +1,8 @@
-/**
- * Created with JetBrains WebStorm.
- * User: A12993
- * Date: 2013/09/21
- * Time: 17:59
- * To change this template use File | Settings | File Templates.
- */
+if(window._) {
+  if(window.when) {
+    window._.when = window.when;
+  }
+  if(window.reqwest) {
+    window._.ajax = window.reqwest;
+  }
+}

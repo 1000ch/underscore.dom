@@ -92,7 +92,7 @@
      * @param {Boolean} useCapture
      */
     _local.bind = function(targetElements, type, callback, useCapture) {
-        if(targetElements == null) {
+        if(!targetElements) {
             return;
         }
         if(_local.isElement(targetElements)) {
@@ -112,7 +112,7 @@
      * @param {Boolean} useCapture
      */
     _local.unbind = function(targetElements, type, callback, useCapture) {
-        if(targetElements == null) {
+        if(!targetElements) {
             return;
         }
         if(_local.isElement(targetElements)) {
@@ -132,7 +132,7 @@
      * @param {Boolean} useCapture
      */
     _local.once = function(targetElements, type, callback, useCapture) {
-        if(targetElements == null) {
+        if(!targetElements) {
             return;
         }
         if(_local.isElement(targetElements)) {
@@ -160,7 +160,7 @@
      * @param {Function} callback
      */
     _local.delegate = function(targetElements, type, selector, callback) {
-        if(targetElements == null) {
+        if(!targetElements) {
             return;
         }
         if(_local.isElement(targetElements)) {
@@ -180,7 +180,7 @@
      * @param {Function} callback
      */
     _local.undelegate = function(targetElements, type, selector, callback) {
-        if(targetElements == null) {
+        if(!targetElements) {
             return;
         }
         if(_local.isElement(targetElements)) {
@@ -198,7 +198,7 @@
      * @param {String} className
      */
     _local.addClass = function(targetElements, className) {
-        if(targetElements == null) {
+        if(!targetElements) {
             return;
         }
         if(_local.isElement(targetElements)) {
@@ -216,7 +216,7 @@
      * @param {String} className
      */
     _local.removeClass = function(targetElements, className) {
-        if(targetElements == null) {
+        if(!targetElements) {
             return;
         }
         if(_local.isElement(targetElements)) {
@@ -234,7 +234,7 @@
      * @param {String} className
      */
     _local.toggleClass = function(targetElements, className) {
-        if(targetElements == null) {
+        if(!targetElements) {
             return;
         }
         if(_local.isElement(targetElements)) {
@@ -407,6 +407,7 @@
         }
     }
 
+    //export
     win._ = _local;
 
 })(window, document);
