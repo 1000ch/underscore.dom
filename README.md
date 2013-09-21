@@ -1,10 +1,33 @@
-# _.domextend [![Build Status](https://travis-ci.org/1000ch/underscore.domextend.png?branch=master)](https://travis-ci.org/1000ch/underscore.domextend)
+# underscore.affix [![Build Status](https://travis-ci.org/1000ch/underscore.affix.png?branch=master)](https://travis-ci.org/1000ch/underscore.affix)
 
 ## About
 
 `_`のdom系のAPI拡張。  
 `_`に入れないほうがいいような気もしたけど、  
 `_`に依存しているし、`$`を使うわけにもいかないので。  
+
+## Build
+
+以下のコマンドでbuild出来ます。
+
+```sh
+grunt build
+```
+
+AjaxとかDeferredも使いたい場合もあるかなということで  
+以下を含んだビルドもサポートしています。  
+
++ [ded/reqwest](https://github.com/ded/reqwest)
++ [cujojs/when](https://github.com/cujojs/when)
+
+```sh
+git submodule init
+git submodule update
+grunt build
+```
+
+それぞれ、`_.ajax`と`_.when`にマッピングしてあるので、  
+リポジトリのドキュメント見ながら使ってください。  
 
 ## Selector API
 
