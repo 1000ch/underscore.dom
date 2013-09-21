@@ -1,7 +1,7 @@
 {
-  "name": "_.domextend",
+  "name": "underscore.affix",
   "version": "0.1.2",
-  "main": "src/_.domextend.js",
+  "main": "src/underscore.affix.js",
   "ignore": [
     "spec",
     ".*",

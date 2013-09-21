@@ -2,13 +2,13 @@ module.exports = (grunt) ->
 
   grunt.initConfig
     jshint:
-      all: ["./src/_.domextend.js"]
+      all: ["./src/underscore.affix.js"]
     uglify:
       js:
         files:
-          "./dist/_.domextend.min.js": ["./src/_.domextend.js"]
+          "./dist/underscore.affix.min.js": ["./src/underscore.affix.js"]
     watch:
-      files: ["./src/_.domextend.js"]
+      files: ["./src/underscore.affix.js"]
       tasks: ["jshint", "uglify"]
 
   grunt.loadNpmTasks 'grunt-contrib-jshint'
