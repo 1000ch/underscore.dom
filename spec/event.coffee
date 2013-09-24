@@ -2,43 +2,31 @@ expect = chai.expect
 
 describe "Event Test", ->
 
-  describe "_.ready()", ->
-
-  describe "_.bind()", ->
+  describe "_.on('type', function() {})", ->
 
     it "bind event to element", ->
       spy = sinon.spy()
       element = _.qs "#id3"
-      _.bind element, "click", spy
+      _.on element, "click", spy
       element.click()
       element.click()
       expect(spy.callCount).to.equal 2
 
-  describe "_.unbind()", ->
+  describe "_.off('type', function() {})", ->
 
     it "unbind event from element", ->
       spy = sinon.spy()
       element = _.qs "#id3"
-      _.bind element, "click", spy
+      _.on element, "click", spy
       element.click()
       element.click()
       expect(spy.callCount).to.equal 2
-      _.unbind element, "click", spy
+      _.off element, "click", spy
       element.click()
       element.click()
       expect(spy.callCount).to.equal 2
 
-  describe "_.once()", ->
-
-    it "bind function which will called once", ->
-      spy = sinon.spy()
-      element = _.qs "#id3"
-      _.once element, "click", spy
-      element.click()
-      element.click()
-      expect(spy.callCount).to.equal 1
-
-  describe "_.delegate()", ->
+  describe "_.on('type', 'selector' function() {})", ->
 
     spy = null
     element = null
@@ -50,21 +38,21 @@ describe "Event Test", ->
       element = _.qs "button"
 
     afterEach ->
-      _.undelegate container
+      _.off container
 
     it "delegate function 1", ->
-      _.delegate container, "click", "button", spy
+      _.on container, "click", "button", spy
       element.click()
       element.click()
       expect(spy.callCount).to.equal 2
 
     it "delegate function 2", ->
-      _.delegate container, "click", ".class1", spy
+      _.on container, "click", ".class1", spy
       element.click()
       element.click()
       expect(spy.callCount).to.equal 2
 
-  describe "_.undelegate()", ->
+  describe "_.off('type', 'selector', function() {})", ->
 
     spy = null
     element = null
@@ -76,44 +64,44 @@ describe "Event Test", ->
       element = _.qs "button"
 
     afterEach ->
-      _.undelegate container
+      _.off container
 
     it "undelegate function 1", ->
-      _.delegate container, "click", "button", spy
+      _.on container, "click", "button", spy
       element.click()
       element.click()
       expect(spy.callCount).to.equal 2
-      _.undelegate container, "click", "button", spy
+      _.off container, "click", "button", spy
       element.click()
       element.click()
       expect(spy.callCount).to.equal 2
 
     it "undelegate function 2", ->
-      _.delegate container, "click", "button", spy
+      _.on container, "click", "button", spy
       element.click()
       element.click()
       expect(spy.callCount).to.equal 2
-      _.undelegate container, "click", "button"
+      _.off container, "click", "button"
       element.click()
       element.click()
       expect(spy.callCount).to.equal 2
 
     it "undelegate function 3", ->
-      _.delegate container, "click", "button", spy
+      _.on container, "click", "button", spy
       element.click()
       element.click()
       expect(spy.callCount).to.equal 2
-      _.undelegate container, "click"
+      _.off container, "click"
       element.click()
       element.click()
       expect(spy.callCount).to.equal 2
 
     it "undelegate function 4", ->
-      _.delegate container, "click", "button", spy
+      _.on container, "click", "button", spy
       element.click()
       element.click()
       expect(spy.callCount).to.equal 2
-      _.undelegate container
+      _.off container
       element.click()
       element.click()
       expect(spy.callCount).to.equal 2
