@@ -57,7 +57,7 @@ DOMツリーが構築された時に発火するイベントを指定します�
         console.log("DOMContentLoaded");
     });
 
-### _.bind(targetElements, type, callback, useCapture)
+### _.on(targetElements, type, callback)
 
 指定の要素にイベントをバインドします。  
 
@@ -67,9 +67,9 @@ DOMツリーが構築された時に発火するイベントを指定します�
     
     var targetElements = _.qsa(".targetClass");
     
-    _.bind(targetElements, "click", clickCallback, false);
+    _.on(targetElements, "click", clickCallback);
 
-### _.unbind(targetElements, type, callback, useCapture)
+### _.off(targetElements, type, callback)
 
 指定の要素からイベントをアンバインドします。  
 
@@ -79,22 +79,9 @@ DOMツリーが構築された時に発火するイベントを指定します�
     
     var targetElements = _.qsa(".targetClass");
     
-    _.unbind(targetElements, "click", clickCallback, false);
+    _.off(targetElements, "click", clickCallback);
 
-### _.once(targetElements, type, callback, useCapture)
-
-指定の要素にイベントをバインドします。  
-イベントは一度だけ発火されます。  
-
-    var clickCallback = function() {
-        console.log("element is clicked.");
-    };
-    
-    var targetElements = _.qsa(".targetClass");
-    
-    _.once(targetElements, "click", clickCallback, false);
-
-### _.delegate(targetElements, type, selector, callback)
+### _.on(targetElements, type, selector, callback)
 
 指定の要素にイベントを移譲し、指定のCSSセレクタに該当する子要素が  
 ある場合イベントを発火します。  
@@ -105,9 +92,9 @@ DOMツリーが構築された時に発火するイベントを指定します�
     
     var targetElements = _.qsa(".targetClass");
     
-    _.delegate(targetElements, "click", "button", clickCallback);
+    _.on(targetElements, "click", "button", clickCallback);
 
-### _.undelegate(targetElements, type, selector, callback)
+### _.off(targetElements, type, selector, callback)
 
 指定の要素にイベントを移譲されている場合、それを除きます。
 
@@ -117,7 +104,7 @@ DOMツリーが構築された時に発火するイベントを指定します�
     
     var targetElements = _.qsa("targetTag");
     
-    _.undelegate(targetElements, "click", "button", clickCallback);
+    _.off(targetElements, "click", "button", clickCallback);
 
 ## Manipulation API
 
