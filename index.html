@@ -1,0 +1,212 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Underscore.affix by 1000ch</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Underscore.affix</h1>
+        <p>This is plugin for &quot;_&quot;. This contains functional API of DOM manipulation.</p>
+
+        <p class="view"><a href="https://github.com/1000ch/underscore.affix">View the Project on GitHub <small>1000ch/underscore.affix</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/1000ch/underscore.affix/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/1000ch/underscore.affix/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/1000ch/underscore.affix">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="underscoreaffix-" class="anchor" href="#underscoreaffix-"><span class="octicon octicon-link"></span></a>underscore.affix <a href="https://travis-ci.org/1000ch/underscore.affix"><img src="https://travis-ci.org/1000ch/underscore.affix.png?branch=master" alt="Build Status"></a>
+</h1>
+
+<h2>
+<a name="about" class="anchor" href="#about"><span class="octicon octicon-link"></span></a>About</h2>
+
+<p><code>_</code>のdom系のAPI拡張。<br><code>_</code>に入れないほうがいいような気もしたけど、<br><code>_</code>に依存しているし、<code>$</code>を使うわけにもいかないので。  </p>
+
+<h2>
+<a name="build" class="anchor" href="#build"><span class="octicon octicon-link"></span></a>Build</h2>
+
+<p>以下のコマンドでbuild出来ます。</p>
+
+<div class="highlight highlight-sh"><pre>grunt build
+</pre></div>
+
+<p>AjaxとかDeferredも使いたい場合もあるかなということで<br>
+以下を含んだビルドもサポートしています。  </p>
+
+<ul>
+<li><a href="https://github.com/ded/reqwest">ded/reqwest</a></li>
+<li><a href="https://github.com/cujojs/when">cujojs/when</a></li>
+</ul><div class="highlight highlight-sh"><pre>git submodule init
+git submodule update
+grunt build
+</pre></div>
+
+<p>それぞれ、<code>_.ajax</code>と<code>_.when</code>にマッピングしてあるので、<br>
+リポジトリのドキュメント見ながら使ってください。  </p>
+
+<h2>
+<a name="selector-api" class="anchor" href="#selector-api"><span class="octicon octicon-link"></span></a>Selector API</h2>
+
+<h3>
+<a name="_qsaselector-context" class="anchor" href="#_qsaselector-context"><span class="octicon octicon-link"></span></a>_.qsa(selector, context)</h3>
+
+<p>指定のCSSセレクタに該当する要素をすべて取得します。  </p>
+
+<pre><code>//context is optional parameter.
+//if context is empty, element will be searched with document as context
+var elements = _.qsa("tagName .className", document);
+</code></pre>
+
+<h3>
+<a name="_qsselector-context" class="anchor" href="#_qsselector-context"><span class="octicon octicon-link"></span></a>_.qs(selector, context)</h3>
+
+<p>指定のCSSセレクタに該当する要素のうち、先頭の要素を取得します。  </p>
+
+<pre><code>//context is optional parameter.
+//if context is empty, element will be searched with document as context
+var element = _.qs("tagName .className", document);
+</code></pre>
+
+<h2>
+<a name="event-api" class="anchor" href="#event-api"><span class="octicon octicon-link"></span></a>Event API</h2>
+
+<h3>
+<a name="_readycallback" class="anchor" href="#_readycallback"><span class="octicon octicon-link"></span></a>_.ready(callback)</h3>
+
+<p>DOMツリーが構築された時に発火するイベントを指定します。  </p>
+
+<pre><code>_.ready(function() {
+    console.log("DOMContentLoaded");
+});
+</code></pre>
+
+<h3>
+<a name="_ontargetelements-type-callback" class="anchor" href="#_ontargetelements-type-callback"><span class="octicon octicon-link"></span></a>_.on(targetElements, type, callback)</h3>
+
+<p>指定の要素にイベントをバインドします。  </p>
+
+<pre><code>var clickCallback = function() {
+    console.log("element is clicked.");
+};
+
+var targetElements = _.qsa(".targetClass");
+
+_.on(targetElements, "click", clickCallback);
+</code></pre>
+
+<h3>
+<a name="_offtargetelements-type-callback" class="anchor" href="#_offtargetelements-type-callback"><span class="octicon octicon-link"></span></a>_.off(targetElements, type, callback)</h3>
+
+<p>指定の要素からイベントをアンバインドします。  </p>
+
+<pre><code>var clickCallback = function() {
+    console.log("element is clicked.");
+};
+
+var targetElements = _.qsa(".targetClass");
+
+_.off(targetElements, "click", clickCallback);
+</code></pre>
+
+<h3>
+<a name="_ontargetelements-type-selector-callback" class="anchor" href="#_ontargetelements-type-selector-callback"><span class="octicon octicon-link"></span></a>_.on(targetElements, type, selector, callback)</h3>
+
+<p>指定の要素にイベントを移譲し、指定のCSSセレクタに該当する子要素が<br>
+ある場合イベントを発火します。  </p>
+
+<pre><code>var clickCallback = function() {
+    console.log("span is clicked.");
+};
+
+var targetElements = _.qsa(".targetClass");
+
+_.on(targetElements, "click", "button", clickCallback);
+</code></pre>
+
+<h3>
+<a name="_offtargetelements-type-selector-callback" class="anchor" href="#_offtargetelements-type-selector-callback"><span class="octicon octicon-link"></span></a>_.off(targetElements, type, selector, callback)</h3>
+
+<p>指定の要素にイベントを移譲されている場合、それを除きます。</p>
+
+<pre><code>var clickCallback = function() {
+    console.log("span is clicked.");
+};
+
+var targetElements = _.qsa("targetTag");
+
+_.off(targetElements, "click", "button", clickCallback);
+</code></pre>
+
+<h2>
+<a name="manipulation-api" class="anchor" href="#manipulation-api"><span class="octicon octicon-link"></span></a>Manipulation API</h2>
+
+<h3>
+<a name="_addclasstargetelements-classname" class="anchor" href="#_addclasstargetelements-classname"><span class="octicon octicon-link"></span></a>_.addClass(targetElements, className)</h3>
+
+<p>指定の要素にクラスを追加します。  </p>
+
+<pre><code>var targetElemenets = _.qsa(".targetClass");
+
+_.addClass(targetElemenets, "addClassName");
+</code></pre>
+
+<h3>
+<a name="_removeclasstargetelements-classname" class="anchor" href="#_removeclasstargetelements-classname"><span class="octicon octicon-link"></span></a>_.removeClass(targetElements, className)</h3>
+
+<p>指定の要素からクラスを削除します。  </p>
+
+<pre><code>var targetElemenets = _.qsa(".targetClass");
+
+_.removeClass(targetElemenets, "removeClassName");
+</code></pre>
+
+<h3>
+<a name="_toggleclasstargetelements-classname" class="anchor" href="#_toggleclasstargetelements-classname"><span class="octicon octicon-link"></span></a>_.toggleClass(targetElements, className)</h3>
+
+<p>指定の要素のクラスをトグルします。  </p>
+
+<pre><code>var targetElemenets = _.qsa(".targetClass");
+
+_.toggleClass(targetElemenets, "toggleClassName");
+</code></pre>
+
+<h2>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>Copyright <a href="http://1000ch.net/">1000ch.net</a><br>
+Released under the MIT license.  </p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/1000ch">1000ch</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-39918995-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
