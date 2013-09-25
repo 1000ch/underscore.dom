@@ -1,34 +1,34 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Underscore.affix by 1000ch</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+
+    <title>Underscore.affix by 1000ch</title>
   </head>
+
   <body>
-    <div class="wrapper">
-      <header>
+    <header>
+      <div class="inner">
         <h1>Underscore.affix</h1>
-        <p>This is plugin for &quot;_&quot;. This contains functional API of DOM manipulation.</p>
+        <h2>This is plugin for &quot;_&quot;. This contains functional API of DOM manipulation.</h2>
+        <a href="https://github.com/1000ch/underscore.affix" class="button"><small>View project on</small>GitHub</a>
+      </div>
+    </header>
 
-        <p class="view"><a href="https://github.com/1000ch/underscore.affix">View the Project on GitHub <small>1000ch/underscore.affix</small></a></p>
-
-
-        <ul>
-          <li><a href="https://github.com/1000ch/underscore.affix/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/1000ch/underscore.affix/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/1000ch/underscore.affix">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-        <h1>
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
 <a name="underscoreaffix-" class="anchor" href="#underscoreaffix-"><span class="octicon octicon-link"></span></a>underscore.affix <a href="https://travis-ci.org/1000ch/underscore.affix"><img src="https://travis-ci.org/1000ch/underscore.affix.png?branch=master" alt="Build Status"></a>
 </h1>
 
@@ -67,20 +67,20 @@ grunt build
 
 <p>指定のCSSセレクタに該当する要素をすべて取得します。  </p>
 
-<pre><code>//context is optional parameter.
-//if context is empty, element will be searched with document as context
-var elements = _.qsa("tagName .className", document);
-</code></pre>
+<div class="highlight highlight-js"><pre><span class="c1">//context is optional parameter.</span>
+<span class="c1">//if context is empty, element will be searched with document as context</span>
+<span class="kd">var</span> <span class="nx">elements</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">qsa</span><span class="p">(</span><span class="s2">"tagName .className"</span><span class="p">,</span> <span class="nb">document</span><span class="p">);</span>
+</pre></div>
 
 <h3>
 <a name="_qsselector-context" class="anchor" href="#_qsselector-context"><span class="octicon octicon-link"></span></a>_.qs(selector, context)</h3>
 
 <p>指定のCSSセレクタに該当する要素のうち、先頭の要素を取得します。  </p>
 
-<pre><code>//context is optional parameter.
-//if context is empty, element will be searched with document as context
-var element = _.qs("tagName .className", document);
-</code></pre>
+<div class="highlight highlight-js"><pre><span class="c1">//context is optional parameter.</span>
+<span class="c1">//if context is empty, element will be searched with document as context</span>
+<span class="kd">var</span> <span class="nx">element</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">qs</span><span class="p">(</span><span class="s2">"tagName .className"</span><span class="p">,</span> <span class="nb">document</span><span class="p">);</span>
+</pre></div>
 
 <h2>
 <a name="event-api" class="anchor" href="#event-api"><span class="octicon octicon-link"></span></a>Event API</h2>
@@ -90,38 +90,38 @@ var element = _.qs("tagName .className", document);
 
 <p>DOMツリーが構築された時に発火するイベントを指定します。  </p>
 
-<pre><code>_.ready(function() {
-    console.log("DOMContentLoaded");
-});
-</code></pre>
+<div class="highlight highlight-js"><pre><span class="nx">_</span><span class="p">.</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"DOMContentLoaded"</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
 
 <h3>
 <a name="_ontargetelements-type-callback" class="anchor" href="#_ontargetelements-type-callback"><span class="octicon octicon-link"></span></a>_.on(targetElements, type, callback)</h3>
 
 <p>指定の要素にイベントをバインドします。  </p>
 
-<pre><code>var clickCallback = function() {
-    console.log("element is clicked.");
-};
+<div class="highlight highlight-js"><pre><span class="kd">var</span> <span class="nx">clickCallback</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"element is clicked."</span><span class="p">);</span>
+<span class="p">};</span>
 
-var targetElements = _.qsa(".targetClass");
+<span class="kd">var</span> <span class="nx">targetElements</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">qsa</span><span class="p">(</span><span class="s2">".targetClass"</span><span class="p">);</span>
 
-_.on(targetElements, "click", clickCallback);
-</code></pre>
+<span class="nx">_</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="nx">targetElements</span><span class="p">,</span> <span class="s2">"click"</span><span class="p">,</span> <span class="nx">clickCallback</span><span class="p">);</span>
+</pre></div>
 
 <h3>
 <a name="_offtargetelements-type-callback" class="anchor" href="#_offtargetelements-type-callback"><span class="octicon octicon-link"></span></a>_.off(targetElements, type, callback)</h3>
 
 <p>指定の要素からイベントをアンバインドします。  </p>
 
-<pre><code>var clickCallback = function() {
-    console.log("element is clicked.");
-};
+<div class="highlight highlight-js"><pre><span class="kd">var</span> <span class="nx">clickCallback</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"element is clicked."</span><span class="p">);</span>
+<span class="p">};</span>
 
-var targetElements = _.qsa(".targetClass");
+<span class="kd">var</span> <span class="nx">targetElements</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">qsa</span><span class="p">(</span><span class="s2">".targetClass"</span><span class="p">);</span>
 
-_.off(targetElements, "click", clickCallback);
-</code></pre>
+<span class="nx">_</span><span class="p">.</span><span class="nx">off</span><span class="p">(</span><span class="nx">targetElements</span><span class="p">,</span> <span class="s2">"click"</span><span class="p">,</span> <span class="nx">clickCallback</span><span class="p">);</span>
+</pre></div>
 
 <h3>
 <a name="_ontargetelements-type-selector-callback" class="anchor" href="#_ontargetelements-type-selector-callback"><span class="octicon octicon-link"></span></a>_.on(targetElements, type, selector, callback)</h3>
@@ -129,28 +129,28 @@ _.off(targetElements, "click", clickCallback);
 <p>指定の要素にイベントを移譲し、指定のCSSセレクタに該当する子要素が<br>
 ある場合イベントを発火します。  </p>
 
-<pre><code>var clickCallback = function() {
-    console.log("span is clicked.");
-};
+<div class="highlight highlight-js"><pre><span class="kd">var</span> <span class="nx">clickCallback</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"span is clicked."</span><span class="p">);</span>
+<span class="p">};</span>
 
-var targetElements = _.qsa(".targetClass");
+<span class="kd">var</span> <span class="nx">targetElements</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">qsa</span><span class="p">(</span><span class="s2">".targetClass"</span><span class="p">);</span>
 
-_.on(targetElements, "click", "button", clickCallback);
-</code></pre>
+<span class="nx">_</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="nx">targetElements</span><span class="p">,</span> <span class="s2">"click"</span><span class="p">,</span> <span class="s2">"button"</span><span class="p">,</span> <span class="nx">clickCallback</span><span class="p">);</span>
+</pre></div>
 
 <h3>
 <a name="_offtargetelements-type-selector-callback" class="anchor" href="#_offtargetelements-type-selector-callback"><span class="octicon octicon-link"></span></a>_.off(targetElements, type, selector, callback)</h3>
 
 <p>指定の要素にイベントを移譲されている場合、それを除きます。</p>
 
-<pre><code>var clickCallback = function() {
-    console.log("span is clicked.");
-};
+<div class="highlight highlight-js"><pre><span class="kd">var</span> <span class="nx">clickCallback</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"span is clicked."</span><span class="p">);</span>
+<span class="p">};</span>
 
-var targetElements = _.qsa("targetTag");
+<span class="kd">var</span> <span class="nx">targetElements</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">qsa</span><span class="p">(</span><span class="s2">"targetTag"</span><span class="p">);</span>
 
-_.off(targetElements, "click", "button", clickCallback);
-</code></pre>
+<span class="nx">_</span><span class="p">.</span><span class="nx">off</span><span class="p">(</span><span class="nx">targetElements</span><span class="p">,</span> <span class="s2">"click"</span><span class="p">,</span> <span class="s2">"button"</span><span class="p">,</span> <span class="nx">clickCallback</span><span class="p">);</span>
+</pre></div>
 
 <h2>
 <a name="manipulation-api" class="anchor" href="#manipulation-api"><span class="octicon octicon-link"></span></a>Manipulation API</h2>
@@ -160,44 +160,56 @@ _.off(targetElements, "click", "button", clickCallback);
 
 <p>指定の要素にクラスを追加します。  </p>
 
-<pre><code>var targetElemenets = _.qsa(".targetClass");
+<div class="highlight highlight-js"><pre><span class="kd">var</span> <span class="nx">targetElemenets</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">qsa</span><span class="p">(</span><span class="s2">".targetClass"</span><span class="p">);</span>
 
-_.addClass(targetElemenets, "addClassName");
-</code></pre>
+<span class="nx">_</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">targetElemenets</span><span class="p">,</span> <span class="s2">"addClassName"</span><span class="p">);</span>
+</pre></div>
 
 <h3>
 <a name="_removeclasstargetelements-classname" class="anchor" href="#_removeclasstargetelements-classname"><span class="octicon octicon-link"></span></a>_.removeClass(targetElements, className)</h3>
 
 <p>指定の要素からクラスを削除します。  </p>
 
-<pre><code>var targetElemenets = _.qsa(".targetClass");
+<div class="highlight highlight-js"><pre><span class="kd">var</span> <span class="nx">targetElemenets</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">qsa</span><span class="p">(</span><span class="s2">".targetClass"</span><span class="p">);</span>
 
-_.removeClass(targetElemenets, "removeClassName");
-</code></pre>
+<span class="nx">_</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">targetElemenets</span><span class="p">,</span> <span class="s2">"removeClassName"</span><span class="p">);</span>
+</pre></div>
 
 <h3>
 <a name="_toggleclasstargetelements-classname" class="anchor" href="#_toggleclasstargetelements-classname"><span class="octicon octicon-link"></span></a>_.toggleClass(targetElements, className)</h3>
 
 <p>指定の要素のクラスをトグルします。  </p>
 
-<pre><code>var targetElemenets = _.qsa(".targetClass");
+<div class="highlight highlight-js"><pre><span class="kd">var</span> <span class="nx">targetElemenets</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">qsa</span><span class="p">(</span><span class="s2">".targetClass"</span><span class="p">);</span>
 
-_.toggleClass(targetElemenets, "toggleClassName");
-</code></pre>
+<span class="nx">_</span><span class="p">.</span><span class="nx">toggleClass</span><span class="p">(</span><span class="nx">targetElemenets</span><span class="p">,</span> <span class="s2">"toggleClassName"</span><span class="p">);</span>
+</pre></div>
 
 <h2>
 <a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
 
 <p>Copyright <a href="http://1000ch.net/">1000ch.net</a><br>
 Released under the MIT license.  </p>
-      </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/1000ch">1000ch</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/1000ch/underscore.affix/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/1000ch/underscore.affix/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/1000ch/underscore.affix"></a> is maintained by <a href="https://github.com/1000ch">1000ch</a>.</p>
+
+          <p>This page was generated by <a href="pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
     </div>
-    <script src="javascripts/scale.fix.js"></script>
-              <script type="text/javascript">
+
+            <script type="text/javascript">
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
             document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
           </script>
