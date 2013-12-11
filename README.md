@@ -11,7 +11,7 @@
 以下のコマンドでbuild出来ます。
 
 ```sh
-grunt build
+$ grunt build
 ```
 
 AjaxとかDeferredも使いたい場合もあるかなということで  
@@ -21,9 +21,9 @@ AjaxとかDeferredも使いたい場合もあるかなということで
 + [cujojs/when](https://github.com/cujojs/when)
 
 ```sh
-git submodule init
-git submodule update
-grunt build
+$ git submodule init
+$ git submodule update
+$ grunt build
 ```
 
 それぞれ、`_.ajax`と`_.when`にマッピングしてあるので、  
