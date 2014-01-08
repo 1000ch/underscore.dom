@@ -2,24 +2,17 @@
 
 ## About
 
-This is plugin for underscore.js/lo-dash.js.
-This provides API for DOM.
-
-`_`のdom系のAPI拡張。  
-`_`に入れないほうがいいような気もしたけど、  
-`_`に依存しているし、`$`を使うわけにもいかないので。  
+This is plugin which provides API for DOM operation for underscore.js/lo-dash.js.
 
 ## Build
 
-以下のコマンドでbuild出来ます。
+You can build with following command.
 
 ```sh
 $ grunt build
 ```
 
 This supports build for following libraries which provide Ajax or Promise.
-
-AjaxとかDeferredも使いたい場合もあるかなということで、以下を含んだビルドもサポートしています。  
 
 + [ded/reqwest](https://github.com/ded/reqwest)
 + [cujojs/when](https://github.com/cujojs/when)
@@ -32,14 +25,11 @@ $ grunt build
 
 They will be mapped to `_.ajax` and `_.when`.
 
-それぞれ、`_.ajax`と`_.when`にマッピングしてあるので、  
-リポジトリのドキュメント見ながら使ってください。  
-
 ## Selector API
 
 ### _.qsa(selector, context)
 
-指定のCSSセレクタに該当する要素をすべて取得します。  
+Get all elements selected with css selector.
 
 ```js
 //context is optional parameter.
@@ -49,7 +39,7 @@ var elements = _.qsa("tagName .className", document);
 
 ### _.qs(selector, context)
 
-指定のCSSセレクタに該当する要素のうち、先頭の要素を取得します。  
+Get first element selected with css selector.
 
 ```js
 //context is optional parameter.
@@ -61,7 +51,7 @@ var element = _.qs("tagName .className", document);
 
 ### _.ready(callback)
 
-DOMツリーが構築された時に発火するイベントを指定します。  
+Handle `DOMContentLoaded` event.
 
 ```js
 _.ready(function() {
@@ -71,7 +61,7 @@ _.ready(function() {
 
 ### _.on(targetElements, type, callback)
 
-指定の要素にイベントをバインドします。  
+Add event to element.
 
 ```js
 var clickCallback = function() {
@@ -85,7 +75,7 @@ _.on(targetElements, "click", clickCallback);
 
 ### _.off(targetElements, type, callback)
 
-指定の要素からイベントをアンバインドします。  
+Remove event from element. 
 
 ```js
 var clickCallback = function() {
@@ -99,8 +89,7 @@ _.off(targetElements, "click", clickCallback);
 
 ### _.on(targetElements, type, selector, callback)
 
-指定の要素にイベントを移譲し、指定のCSSセレクタに該当する子要素が  
-ある場合イベントを発火します。  
+Attach delegated event handler to elements which matches css selector.
 
 ```js
 var clickCallback = function() {
@@ -114,7 +103,7 @@ _.on(targetElements, "click", "button", clickCallback);
 
 ### _.off(targetElements, type, selector, callback)
 
-指定の要素にイベントを移譲されている場合、それを除きます。
+Detach delegated event handler from elements.
 
 ```js
 var clickCallback = function() {
@@ -130,7 +119,7 @@ _.off(targetElements, "click", "button", clickCallback);
 
 ### _.addClass(targetElements, className)
 
-指定の要素にクラスを追加します。  
+Add class to element. 
 
 ```js
 var targetElemenets = _.qsa(".targetClass");
@@ -140,7 +129,7 @@ _.addClass(targetElemenets, "addClassName");
 
 ### _.removeClass(targetElements, className)
 
-指定の要素からクラスを削除します。  
+Remove class from element. 
 
 ```js
 var targetElemenets = _.qsa(".targetClass");
@@ -150,7 +139,7 @@ _.removeClass(targetElemenets, "removeClassName");
 
 ### _.toggleClass(targetElements, className)
 
-指定の要素のクラスをトグルします。  
+Toggle class of element.
 
 ```js
 var targetElemenets = _.qsa(".targetClass");
@@ -158,7 +147,7 @@ var targetElemenets = _.qsa(".targetClass");
 _.toggleClass(targetElemenets, "toggleClassName");
 ```
 
-##License
+## License
 
 Copyright [1000ch.net](http://1000ch.net/)  
 Released under the MIT license.  
