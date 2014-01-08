@@ -2,6 +2,9 @@
 
 ## About
 
+This is plugin for underscore.js/lo-dash.js.
+This provides API for DOM.
+
 `_`のdom系のAPI拡張。  
 `_`に入れないほうがいいような気もしたけど、  
 `_`に依存しているし、`$`を使うわけにもいかないので。  
@@ -14,8 +17,9 @@
 $ grunt build
 ```
 
-AjaxとかDeferredも使いたい場合もあるかなということで  
-以下を含んだビルドもサポートしています。  
+This supports build for following libraries which provide Ajax or Promise.
+
+AjaxとかDeferredも使いたい場合もあるかなということで、以下を含んだビルドもサポートしています。  
 
 + [ded/reqwest](https://github.com/ded/reqwest)
 + [cujojs/when](https://github.com/cujojs/when)
@@ -25,6 +29,8 @@ $ git submodule init
 $ git submodule update
 $ grunt build
 ```
+
+They will be mapped to `_.ajax` and `_.when`.
 
 それぞれ、`_.ajax`と`_.when`にマッピングしてあるので、  
 リポジトリのドキュメント見ながら使ってください。  
