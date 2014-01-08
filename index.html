@@ -38,18 +38,17 @@
 <h2>
 <a name="about" class="anchor" href="#about"><span class="octicon octicon-link"></span></a>About</h2>
 
-<p><code>_</code>のdom系のAPI拡張。<br><code>_</code>に入れないほうがいいような気もしたけど、<br><code>_</code>に依存しているし、<code>$</code>を使うわけにもいかないので。  </p>
+<p>This is plugin which provides API for DOM operation for underscore.js/lo-dash.js.</p>
 
 <h2>
 <a name="build" class="anchor" href="#build"><span class="octicon octicon-link"></span></a>Build</h2>
 
-<p>以下のコマンドでbuild出来ます。</p>
+<p>You can build with following command.</p>
 
 <div class="highlight highlight-sh"><pre><span class="nv">$ </span>grunt build
 </pre></div>
 
-<p>AjaxとかDeferredも使いたい場合もあるかなということで<br>
-以下を含んだビルドもサポートしています。  </p>
+<p>This supports build for following libraries which provide Ajax or Promise.</p>
 
 <ul>
 <li><a href="https://github.com/ded/reqwest">ded/reqwest</a></li>
@@ -59,8 +58,7 @@
 <span class="nv">$ </span>grunt build
 </pre></div>
 
-<p>それぞれ、<code>_.ajax</code>と<code>_.when</code>にマッピングしてあるので、<br>
-リポジトリのドキュメント見ながら使ってください。  </p>
+<p>They will be mapped to <code>_.ajax</code> and <code>_.when</code>.</p>
 
 <h2>
 <a name="selector-api" class="anchor" href="#selector-api"><span class="octicon octicon-link"></span></a>Selector API</h2>
@@ -68,7 +66,7 @@
 <h3>
 <a name="_qsaselector-context" class="anchor" href="#_qsaselector-context"><span class="octicon octicon-link"></span></a>_.qsa(selector, context)</h3>
 
-<p>指定のCSSセレクタに該当する要素をすべて取得します。  </p>
+<p>Get all elements selected with css selector.</p>
 
 <div class="highlight highlight-js"><pre><span class="c1">//context is optional parameter.</span>
 <span class="c1">//if context is empty, element will be searched with document as context</span>
@@ -78,7 +76,7 @@
 <h3>
 <a name="_qsselector-context" class="anchor" href="#_qsselector-context"><span class="octicon octicon-link"></span></a>_.qs(selector, context)</h3>
 
-<p>指定のCSSセレクタに該当する要素のうち、先頭の要素を取得します。  </p>
+<p>Get first element selected with css selector.</p>
 
 <div class="highlight highlight-js"><pre><span class="c1">//context is optional parameter.</span>
 <span class="c1">//if context is empty, element will be searched with document as context</span>
@@ -91,7 +89,7 @@
 <h3>
 <a name="_readycallback" class="anchor" href="#_readycallback"><span class="octicon octicon-link"></span></a>_.ready(callback)</h3>
 
-<p>DOMツリーが構築された時に発火するイベントを指定します。  </p>
+<p>Handle <code>DOMContentLoaded</code> event.</p>
 
 <div class="highlight highlight-js"><pre><span class="nx">_</span><span class="p">.</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"DOMContentLoaded"</span><span class="p">);</span>
@@ -101,7 +99,7 @@
 <h3>
 <a name="_ontargetelements-type-callback" class="anchor" href="#_ontargetelements-type-callback"><span class="octicon octicon-link"></span></a>_.on(targetElements, type, callback)</h3>
 
-<p>指定の要素にイベントをバインドします。  </p>
+<p>Add event to element.</p>
 
 <div class="highlight highlight-js"><pre><span class="kd">var</span> <span class="nx">clickCallback</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"element is clicked."</span><span class="p">);</span>
@@ -115,7 +113,7 @@
 <h3>
 <a name="_offtargetelements-type-callback" class="anchor" href="#_offtargetelements-type-callback"><span class="octicon octicon-link"></span></a>_.off(targetElements, type, callback)</h3>
 
-<p>指定の要素からイベントをアンバインドします。  </p>
+<p>Remove event from element. </p>
 
 <div class="highlight highlight-js"><pre><span class="kd">var</span> <span class="nx">clickCallback</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"element is clicked."</span><span class="p">);</span>
@@ -129,8 +127,7 @@
 <h3>
 <a name="_ontargetelements-type-selector-callback" class="anchor" href="#_ontargetelements-type-selector-callback"><span class="octicon octicon-link"></span></a>_.on(targetElements, type, selector, callback)</h3>
 
-<p>指定の要素にイベントを移譲し、指定のCSSセレクタに該当する子要素が<br>
-ある場合イベントを発火します。  </p>
+<p>Attach delegated event handler to elements which matches css selector.</p>
 
 <div class="highlight highlight-js"><pre><span class="kd">var</span> <span class="nx">clickCallback</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"span is clicked."</span><span class="p">);</span>
@@ -144,7 +141,7 @@
 <h3>
 <a name="_offtargetelements-type-selector-callback" class="anchor" href="#_offtargetelements-type-selector-callback"><span class="octicon octicon-link"></span></a>_.off(targetElements, type, selector, callback)</h3>
 
-<p>指定の要素にイベントを移譲されている場合、それを除きます。</p>
+<p>Detach delegated event handler from elements.</p>
 
 <div class="highlight highlight-js"><pre><span class="kd">var</span> <span class="nx">clickCallback</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"span is clicked."</span><span class="p">);</span>
@@ -161,7 +158,7 @@
 <h3>
 <a name="_addclasstargetelements-classname" class="anchor" href="#_addclasstargetelements-classname"><span class="octicon octicon-link"></span></a>_.addClass(targetElements, className)</h3>
 
-<p>指定の要素にクラスを追加します。  </p>
+<p>Add class to element. </p>
 
 <div class="highlight highlight-js"><pre><span class="kd">var</span> <span class="nx">targetElemenets</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">qsa</span><span class="p">(</span><span class="s2">".targetClass"</span><span class="p">);</span>
 
@@ -171,7 +168,7 @@
 <h3>
 <a name="_removeclasstargetelements-classname" class="anchor" href="#_removeclasstargetelements-classname"><span class="octicon octicon-link"></span></a>_.removeClass(targetElements, className)</h3>
 
-<p>指定の要素からクラスを削除します。  </p>
+<p>Remove class from element. </p>
 
 <div class="highlight highlight-js"><pre><span class="kd">var</span> <span class="nx">targetElemenets</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">qsa</span><span class="p">(</span><span class="s2">".targetClass"</span><span class="p">);</span>
 
@@ -181,7 +178,7 @@
 <h3>
 <a name="_toggleclasstargetelements-classname" class="anchor" href="#_toggleclasstargetelements-classname"><span class="octicon octicon-link"></span></a>_.toggleClass(targetElements, className)</h3>
 
-<p>指定の要素のクラスをトグルします。  </p>
+<p>Toggle class of element.</p>
 
 <div class="highlight highlight-js"><pre><span class="kd">var</span> <span class="nx">targetElemenets</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">qsa</span><span class="p">(</span><span class="s2">".targetClass"</span><span class="p">);</span>
 
