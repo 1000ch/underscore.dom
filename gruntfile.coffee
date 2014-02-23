@@ -2,53 +2,53 @@ module.exports = (grunt) ->
 
   grunt.initConfig
     jshint:
-      all: ['./src/underscore.affix.js']
+      all: ['./src/underscore.dom.js']
     concat:
-      underscore_affix:
+      underscore_dom:
         src: [
           './underscore/underscore.js',
-          './src/underscore.affix.js'
+          './src/underscore.dom.js'
         ]
-        dest: './dist/underscore.affix.js'
+        dest: './dist/underscore.dom.js'
       underscore_pack:
         src: [
           './underscore/underscore.js',
-          './src/underscore.affix.js',
+          './src/underscore.dom.js',
           './reqwest/reqwest.js',
           './when/when.js',
           './src/export.js'
         ]
         dest: './dist/underscore.pack.js'
-      lodash_affix:
+      lodash_dom:
         src: [
           './lodash/lodash.js',
-          './src/underscore.affix.js'
+          './src/underscore.dom.js'
         ]
-        dest: './dist/lodash.affix.js'
+        dest: './dist/lodash.dom.js'
       lodash_pack:
         src: [
           './lodash/lodash.js',
-          './src/underscore.affix.js',
+          './src/underscore.dom.js',
           './reqwest/reqwest.js',
           './when/when.js',
           './src/export.js'
         ]
         dest: './dist/lodash.pack.js'
     uglify:
-      underscore_affix:
+      underscore_dom:
         files:
-          './dist/underscore.affix.min.js': ['./dist/underscore.affix.js']
+          './dist/underscore.dom.min.js': ['./dist/underscore.dom.js']
       underscore_pack:
         files:
           './dist/underscore.pack.min.js': ['./dist/underscore.pack.js']
-      lodash_affix:
+      lodash_dom:
         files:
-          './dist/lodash.affix.min.js': ['./dist/lodash.affix.js']
+          './dist/lodash.dom.min.js': ['./dist/lodash.dom.js']
       lodash_pack:
         files:
           './dist/lodash.pack.min.js': ['./dist/lodash.pack.js']
     watch:
-      files: ['./src/underscore.affix.js']
+      files: ['./src/underscore.dom.js']
       tasks: ['jshint', 'concat', 'uglify']
 
   grunt.loadNpmTasks 'grunt-contrib-concat'

@@ -1,4 +1,4 @@
-# underscore.affix [![Build Status](https://travis-ci.org/1000ch/underscore.affix.png?branch=master)](https://travis-ci.org/1000ch/underscore.affix)
+# underscore.dom [![Build Status](https://travis-ci.org/1000ch/underscore.dom.png?branch=master)](https://travis-ci.org/1000ch/underscore.dom)
 
 ## About
 

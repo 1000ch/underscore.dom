@@ -1,7 +1,7 @@
 {
-  "name": "underscore.affix",
-  "version": "0.3.0",
-  "main": "src/underscore.affix.js",
+  "name": "underscore.dom",
+  "version": "0.5.0",
+  "main": "src/underscore.dom.js",
   "ignore": [
     "spec",
     ".*",
