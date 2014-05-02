@@ -47,14 +47,10 @@ module.exports = (grunt) ->
       lodash_pack:
         files:
           './dist/lodash.pack.min.js': ['./dist/lodash.pack.js']
-    watch:
-      files: ['./src/underscore.dom.js']
-      tasks: ['jshint', 'concat', 'uglify']
 
   grunt.loadNpmTasks 'grunt-contrib-concat'
   grunt.loadNpmTasks 'grunt-contrib-jshint'
   grunt.loadNpmTasks 'grunt-contrib-uglify'
-  grunt.loadNpmTasks 'grunt-contrib-watch'
 
   grunt.registerTask 'default', 'watch'
   grunt.registerTask 'build', ['concat', 'uglify']

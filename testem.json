@@ -8,12 +8,12 @@
   "before_tests": "./node_modules/coffee-script/bin/coffee -c ./spec/*.coffee",
   "after_tests": "rm spec/*.js",
   "src_files": [
-    "./lib/lodash/lodash.js",
+    "./lib/lodash/dist/lodash.js",
     "./src/underscore.dom.js",
     "./spec/*.coffee"
   ],
   "serve_files": [
-    "./lib/lodash/lodash.js",
+    "./lib/lodash/dist/lodash.js",
     "./src/underscore.dom.js",
     "./spec/*.js"
   ],
